@@ -12,15 +12,33 @@ const App = () => {
     });
   };
 
+  const ok = () => {
+    store.dispatch({
+      type: 'OK'
+    });
+  };
+
+  const bad = () => {
+    store.dispatch({
+      type: 'BAD'
+    });
+  };
+
+  const zero = () => {
+    store.dispatch({
+      type: 'ZERO'
+    });
+  };
+
   return (
     <div>
       <button onClick={good}>Good</button>
-      <button>Ok</button>
-      <button>Bad</button>
-      <button>Zero</button>
+      <button onClick={ok}>Ok</button>
+      <button onClick={bad}>Bad</button>
+      <button onClick={zero}>Zero</button>
       <div>Good {store.getState().good}</div>
-      <div>Ok</div>
-      <div>Bad</div>
+      <div>Ok {store.getState().ok}</div>
+      <div>Bad {store.getState().bad}</div>
     </div>
   );
 };
