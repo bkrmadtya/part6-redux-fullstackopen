@@ -17,7 +17,7 @@ const asObject = anecdote => {
   };
 };
 
-const initialState = anecdotesAtStart.map(asObject);
+const initialState = [...anecdotesAtStart.map(asObject)];
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -32,7 +32,7 @@ const reducer = (state = initialState, action) => {
         votes: anecdoteToVote.votes + 1
       };
 
-      return state.map(item => (item.id !== id ? item : changedAnecdote));
+      return state.map(item => (item.id === id ? changedAnecdote : item));
     default:
       return state;
   }

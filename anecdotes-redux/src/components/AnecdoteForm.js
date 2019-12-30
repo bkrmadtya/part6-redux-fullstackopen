@@ -1,6 +1,10 @@
 import React from 'react';
 
 import { createAnecdote } from '../reducers/anecdoteReducer';
+import {
+  displayNotification,
+  hideNotification
+} from '../reducers/notificationReducer';
 
 const AnecdoteForm = ({ store }) => {
   const createNew = event => {
@@ -9,6 +13,13 @@ const AnecdoteForm = ({ store }) => {
     event.target.anecdote.value = '';
 
     store.dispatch(createAnecdote(content));
+
+    store.dispatch(
+      displayNotification(`You created a new ancedote '${content}'`)
+    );
+    setTimeout(() => {
+      store.dispatch(hideNotification());
+    }, 5000);
   };
   return (
     <div>
