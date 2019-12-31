@@ -9,7 +9,6 @@ const AnecdoteList = props => {
 
   const vote = anecdote => {
     upvote(anecdote);
-
     setNotification(`You voted '${anecdote.content}'`, 5);
   };
 
