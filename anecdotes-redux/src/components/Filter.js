@@ -1,10 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { filterAnecdote } from '../reducers/filterReducer';
 
-const Filter = ({ store }) => {
+const Filter = ({ filterAnecdote }) => {
   const handleChange = event => {
-    store.dispatch(filterAnecdote(event.target.value));
+    filterAnecdote(event.target.value);
   };
 
   const style = {
@@ -18,4 +19,4 @@ const Filter = ({ store }) => {
   );
 };
 
-export default Filter;
+export default connect(null, { filterAnecdote })(Filter);

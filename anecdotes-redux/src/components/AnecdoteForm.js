@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { createAnecdote } from '../reducers/anecdoteReducer';
 import {
@@ -6,19 +7,19 @@ import {
   hideNotification
 } from '../reducers/notificationReducer';
 
-const AnecdoteForm = ({ store }) => {
+const AnecdoteForm = props => {
+  const { createAnecdote, displayNotification, hideNotification } = props;
+
   const createNew = event => {
     event.preventDefault();
     const content = event.target.anecdote.value;
     event.target.anecdote.value = '';
 
-    store.dispatch(createAnecdote(content));
+    createAnecdote(content);
 
-    store.dispatch(
-      displayNotification(`You created a new ancedote '${content}'`)
-    );
+    displayNotification(`You created a new ancedote '${content}'`);
     setTimeout(() => {
-      store.dispatch(hideNotification());
+      hideNotification();
     }, 5000);
   };
   return (
@@ -34,4 +35,8 @@ const AnecdoteForm = ({ store }) => {
   );
 };
 
-export default AnecdoteForm;
+export default connect(null, {
+  createAnecdote,
+  displayNotification,
+  hideNotification
+})(AnecdoteForm);

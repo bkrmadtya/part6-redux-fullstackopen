@@ -5,16 +5,14 @@ import AnecdoteForm from './components/AnecdoteForm';
 import AnecdoteList from './components/AnecdoteList';
 import Filter from './components/Filter';
 
-const App = ({ store }) => {
+const App = () => {
   return (
     <div>
-      <h2>Anecdotes</h2>
-      {store.getState().notification.visibility && (
-        <Notification store={store} />
-      )}
-      <Filter store={store} />
-      <AnecdoteForm store={store} />
-      <AnecdoteList store={store} />
+      <h2>Programming Anecdotes</h2>
+      <Notification />
+      <Filter />
+      <AnecdoteForm />
+      <AnecdoteList />
     </div>
   );
 };
