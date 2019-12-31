@@ -12,14 +12,24 @@ const notificationReducer = (state = initialNotification, action) => {
   }
 };
 
-export const displayNotification = message => {
+export const setNotification = (message, time) => {
+  return dispatch => {
+    dispatch(displayNotification(message));
+
+    setTimeout(() => {
+      dispatch(clearNotification());
+    }, time * 1000);
+  };
+};
+
+const displayNotification = message => {
   return {
     type: 'TOGGLE_NOTIFICATION',
     payload: { message, visibility: true }
   };
 };
 
-export const hideNotification = () => {
+const clearNotification = () => {
   return {
     type: 'TOGGLE_NOTIFICATION',
     payload: {
